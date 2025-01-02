@@ -1,4 +1,5 @@
 from database import Usuario, Conta, db
+import os
 
 db.connect()
 db.create_tables([Usuario, Conta])
@@ -8,7 +9,6 @@ def cadastrar_usuario():
     telefone = input("Digite o telefone: ")
     email = input("Digite o email: ")
     senha = input("Digite a senha: ")
-
 
     try:
         Usuario.create(nome=nome, telefone=telefone, email=email, senha=senha)
@@ -22,7 +22,7 @@ def deposito():
     senha = input('Digite sua senha: ')
 
     try:
-        usuario = Usuario.get((Usuario.email == email) & (Usuario.senha == senha))
+        Usuario.get((Usuario.email == email) & (Usuario.senha == senha))
 
         conta = Conta.get(Conta.usuario == email)
         valor = float(input('Digite o valor do deposito: '))
@@ -40,8 +40,7 @@ def saque():
     senha = input('Digite sua senha: ')
 
     try:
-        usuario = Usuario.get((Usuario.email == email) & (Usuario.senha == senha))
-
+        Usuario.get((Usuario.email == email) & (Usuario.senha == senha))
 
         conta = Conta.get(Conta.usuario == email)
         valor = float(input('Digite o valor do Saque: '))
@@ -79,7 +78,8 @@ def menu():
         2 - Deposito
         3 - Saque
         4 - Status
-        5 - EXIT
+        5 - Ajuda
+        6 - EXIT
         '''))
         if (Menu == 1):
             cadastrar_usuario()
@@ -90,6 +90,8 @@ def menu():
         elif (Menu == 4):
             status()
         elif (Menu == 5):
+            pass
+        elif(Menu == 6):
             break 
         else:
             print('Opção Incorreta!')

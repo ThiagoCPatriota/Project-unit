@@ -14,6 +14,6 @@ class Usuario(Model):
 class Conta(Model):
     usuario = CharField()
     saldo = FloatField()
-
+    
     class Meta:
         database = db
